@@ -1,0 +1,40 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Contacts</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only clear (tap)="addItem()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <!-- <ion-searchbar (ionInput)="filterContacts($event)"></ion-searchbar> -->
+  <ion-list>
+    <button
+      *ngFor="let contact of contacts"
+      ion-item
+      (tap)="loadContact(contact)">
+      <h2>{{ contact.lastname }}, {{ contact.firstname}}</h2>
+      <ion-note>{{ contact.email }}</ion-note>
+    </button>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-list>
+      <ion-item>
+        <ion-label item-left>Contacts</ion-label>
+        <ion-badge item-right>{{ contacts.length }}</ion-badge>
+      </ion-item>
+    </ion-list>
+    <button full color="danger" ion-button (tap)="removeAllContacts()" *ngIf="contacts.length > 0">
+      Remove All Contacts
+    </button>
+  </ion-toolbar>
+</ion-footer>
